@@ -38,10 +38,18 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.updateUserBio = (req, res, next) => {
-  const { name, about } = req.body;
-  User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
+  const { name, email } = req.body;
+  User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true })
     .then((user) => res.send({ data: user }))
-    .catch(next);
+    .catch((err) => {
+      if (err instanceof ValidationError) {
+        next(new BadRequestError(err.message));
+      } else if (err.code === 11000) {
+        next(new ConflictError(`User ${email} already exists`));
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports.login = (req, res, next) => {

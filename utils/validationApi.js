@@ -1,38 +1,35 @@
 const { celebrate, Joi } = require('celebrate');
-// TODO
+
 const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/;
 
-// const validateParamsUserId = celebrate({
-//   params: Joi.object().keys({
-//     userId: Joi.string().hex().length(24).required(),
-//   }),
-// });
-//
-// const validateUserBio = celebrate({
-//   body: Joi.object().keys({
-//     name: Joi.string().min(2).max(30).required(),
-//     about: Joi.string().min(2).max(30).required(),
-//   }),
-// });
-//
-// const validateUserAvatar = celebrate({
-//   body: Joi.object().keys({
-//     avatar: Joi.string().regex(URL_REGEX).required(),
-//   }),
-// });
-//
-// const validateCreateCard = celebrate({
-//   body: Joi.object().keys({
-//     name: Joi.string().min(2).max(30).required(),
-//     link: Joi.string().regex(URL_REGEX).required(),
-//   }),
-// });
-//
-// const validateParamsCardId = celebrate({
-//   params: Joi.object().keys({
-//     cardId: Joi.string().hex().length(24).required(),
-//   }),
-// });
+const validateUserBio = celebrate({
+  body: Joi.object().keys({
+    name: Joi.string().min(2).max(30).required(),
+    email: Joi.string().email().required(),
+  }),
+});
+
+const validateCreateMovie = celebrate({
+  body: Joi.object().keys({
+    country: Joi.string().required(),
+    director: Joi.string().required(),
+    duration: Joi.number().required(),
+    year: Joi.string().length(4).required(),
+    description: Joi.string().required(),
+    image: Joi.string().regex(URL_REGEX).required(),
+    trailerLink: Joi.string().regex(URL_REGEX).required(),
+    thumbnail: Joi.string().regex(URL_REGEX).required(),
+    movieId: Joi.string().hex().length(24).required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
+  }),
+});
+
+const validateParamsMovieId = celebrate({
+  params: Joi.object().keys({
+    movieId: Joi.string().hex().length(24).required(),
+  }),
+});
 
 const validateLogin = celebrate({
   body: Joi.object().keys({
@@ -50,11 +47,9 @@ const validateCreateUser = celebrate({
 });
 
 module.exports = {
-  validateParamsUserId,
   validateUserBio,
-  validateUserAvatar,
-  validateCreateCard,
-  validateParamsCardId,
+  validateCreateMovie,
+  validateParamsMovieId,
   validateLogin,
   validateCreateUser,
 };

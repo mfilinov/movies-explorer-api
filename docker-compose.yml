@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+  nginx:
+    image: nginx:1.25.0
+    container_name: nginx
+    restart: always
+    environment:
+      TZ: "Europe/Moscow"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./nginx:/etc/nginx/conf.d"
+      - "./ssl:/etc/nginx/ssl.d"
+  mongodb:
+    image: mongo:5.0.2
+    restart: always
+    environment:
+      TZ: "Europe/Moscow"
+    container_name: mongodb
+    volumes:
+      - db:/data/db
+  api:
+    container_name: backend
+    depends_on:
+      - mongodb
+      - nginx
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      - MONGO_DB=mongodb://mongodb:27017/bitfilmsdb
+      - NODE_ENV=production
+      - APP_PORT:3000
+      - JWT_SECRET='secret_prod'
+volumes:
+  db:

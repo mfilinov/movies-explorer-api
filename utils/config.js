@@ -4,7 +4,9 @@ const APP_PORT = process.env.APP_PORT || 3000;
 const MONGO_OPTIONS = {
   useNewUrlParser: true,
 };
+const requestLogFilename = 'request.log';
+const errorLogFilename = 'error.log';
 
 module.exports = {
-  JWT_SECRET, APP_PORT, MONGO_OPTIONS, MONGO_DB,
+  JWT_SECRET, APP_PORT, MONGO_OPTIONS, MONGO_DB, requestLogFilename, errorLogFilename,
 };
