@@ -14,7 +14,8 @@ node_modules
 .idea
 .vscode
 
-# test
+# dev
 *.http
 *.env.json
 *.env
+ssl/

@@ -14,7 +14,7 @@ services:
       - "./nginx:/etc/nginx/conf.d"
       - "./ssl:/etc/nginx/ssl.d"
   mongodb:
-    image: mongo:5.0.2
+    image: mongo:6.0
     restart: always
     environment:
       TZ: "Europe/Moscow"
@@ -27,7 +27,6 @@ services:
       - mongodb
       - nginx
     build:
-      context: ./backend
       dockerfile: Dockerfile
     restart: always
     environment:
