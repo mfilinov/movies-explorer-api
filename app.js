@@ -9,12 +9,12 @@ const { APP_PORT, MONGO_DB, MONGO_OPTIONS } = require('./utils/config');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
+app.use(requestLogger);
 app.use(rateLimit);
 app.use(helmet());
 app.use(express.json());
 
 mongoose.connect(MONGO_DB, MONGO_OPTIONS);
-app.use(requestLogger);
 app.use(router);
 app.use(errorLogger);
 app.use(errors());

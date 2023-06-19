@@ -5,6 +5,7 @@ const BAD_REQUEST = 'Bad request';
 const FORBIDDEN = 'Forbidden';
 const NOT_FOUND = 'Resource not found';
 const CONFLICT = 'Conflict';
+const EMAIL_EXISTS = 'Email already exists';
 
 module.exports = {
   INCORRECT_URL,
@@ -14,4 +15,5 @@ module.exports = {
   FORBIDDEN,
   NOT_FOUND,
   CONFLICT,
+  EMAIL_EXISTS,
 };

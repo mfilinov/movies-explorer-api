@@ -6,6 +6,7 @@ const User = require('../models/user');
 const { JWT_SECRET } = require('../utils/config');
 const BadRequestError = require('../utils/errors/BadRequest');
 const ConflictError = require('../utils/errors/Conflict');
+const { EMAIL_EXISTS } = require('../utils/constants');
 
 const { ValidationError } = mongoose.Error;
 
@@ -29,7 +30,7 @@ module.exports.createUser = (req, res, next) => {
           if (err instanceof ValidationError) {
             next(new BadRequestError(err.message));
           } else if (err.code === 11000) {
-            next(new ConflictError(`User ${email} already exists`));
+            next(new ConflictError(EMAIL_EXISTS));
           } else {
             next(err);
           }
@@ -45,7 +46,7 @@ module.exports.updateUserBio = (req, res, next) => {
       if (err instanceof ValidationError) {
         next(new BadRequestError(err.message));
       } else if (err.code === 11000) {
-        next(new ConflictError(`User ${email} already exists`));
+        next(new ConflictError(EMAIL_EXISTS));
       } else {
         next(err);
       }

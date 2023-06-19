@@ -6,7 +6,7 @@
  - Nginx
 
 ## Demo
-Here is a working live demo :  https://mfilinov.nomoredomains.rocks/api
+Here is a working live demo :  https://mfilinov.nomoredomains.rocks/api/
 
 ## Routes
 
