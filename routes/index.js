@@ -4,8 +4,8 @@ const { auth } = require('../middlewares/auth');
 const { validateLogin, validateCreateUser } = require('../utils/validationApi');
 const NotFoundError = require('../utils/errors/NotFound');
 
-router.use('/signin', validateLogin, login);
-router.use('/signup', validateCreateUser, createUser);
+router.post('/signin', validateLogin, login);
+router.post('/signup', validateCreateUser, createUser);
 
 router.use(auth);
 
