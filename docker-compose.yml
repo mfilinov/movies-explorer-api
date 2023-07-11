@@ -13,6 +13,7 @@ services:
     volumes:
       - "./nginx:/etc/nginx/conf.d"
       - "./ssl:/etc/nginx/ssl.d"
+      - "./nginx/build:/usr/share/nginx/html"
   mongodb:
     image: mongo:6.0
     restart: always
