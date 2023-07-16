@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
 const helmet = require('helmet');
+const cors = require('cors');
 const rateLimit = require('./middlewares/rateLimit');
 const errorHandler = require('./middlewares/errorHandler');
 const router = require('./routes');
@@ -12,6 +13,7 @@ const app = express();
 app.use(requestLogger);
 app.use(rateLimit);
 app.use(helmet());
+app.use(cors());
 app.use(express.json());
 
 mongoose.connect(MONGO_DB, MONGO_OPTIONS);
