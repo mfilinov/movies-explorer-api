@@ -8,6 +8,8 @@
 ## Demo
 Here is a working live demo :  https://mfilinov.nomoredomains.rocks/api/
 
+frontend available on https://mfilinov.nomoredomains.rocks
+
 ## Routes
 
 ### Get current user info
@@ -40,7 +42,7 @@ git clone https://github.com/mfilinov/movies-explorer-api.git && cd movies-explo
 
 3. Build and start infrastructure via docker-compose
 ```shell
-sudo docker-compose up -d
+sudo docker-compose up -d --build
 ```
 
 </details>

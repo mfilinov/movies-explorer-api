@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "lint": "npx eslint ."
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,7 @@
     "winston": "^3.9.0"
   },
   "devDependencies": {
-    "eslint": "^8.41.0",
+    "eslint": "^8.50.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
     "nodemon": "^2.0.22"

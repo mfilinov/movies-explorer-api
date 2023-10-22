@@ -6,6 +6,8 @@ const FORBIDDEN = 'Forbidden';
 const NOT_FOUND = 'Resource not found';
 const CONFLICT = 'Conflict';
 const EMAIL_EXISTS = 'Email already exists';
+const REQUEST_LOGS_FILENAME = 'request.log';
+const ERROR_LOGS_FILENAME = 'error.log';
 
 module.exports = {
   INCORRECT_URL,
@@ -16,4 +18,6 @@ module.exports = {
   NOT_FOUND,
   CONFLICT,
   EMAIL_EXISTS,
+  REQUEST_LOGS_FILENAME,
+  ERROR_LOGS_FILENAME,
 };

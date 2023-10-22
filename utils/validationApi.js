@@ -1,11 +1,14 @@
 const { celebrate, Joi } = require('celebrate');
 
 const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/;
+const nameSchema = Joi.string().min(2).max(30).required();
+const emailSchema = Joi.string().email().required()
+const passwordSchema = Joi.string().min(8).max(30).required();
 
 const validateUserBio = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30).required(),
-    email: Joi.string().email().required(),
+    name: nameSchema,
+    email: emailSchema,
   }),
 });
 
@@ -33,16 +36,16 @@ const validateParamsMovieId = celebrate({
 
 const validateLogin = celebrate({
   body: Joi.object().keys({
-    email: Joi.string().email().required(),
-    password: Joi.string().required(),
+    email: emailSchema,
+    password: passwordSchema,
   }),
 });
 
 const validateCreateUser = celebrate({
   body: Joi.object().keys({
-    email: Joi.string().email().required(),
-    password: Joi.string().required(),
-    name: Joi.string().min(2).max(30).required(),
+    name: nameSchema,
+    email: emailSchema,
+    password: passwordSchema,
   }),
 });
 

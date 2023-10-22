@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { HTTP_STATUS_CREATED } = require('http2').constants;
+const { HTTP_STATUS_CREATED, HTTP_STATUS_OK } = require('http2').constants;
 const Movie = require('../models/movie');
 const BadRequestError = require('../utils/errors/BadRequest');
 const NotFoundError = require('../utils/errors/NotFound');
@@ -9,7 +9,7 @@ const { ValidationError } = mongoose.Error;
 
 const getMovies = (req, res, next) => {
   Movie.find({ owner: req.user._id })
-    .then((movies) => res.send({ data: movies }))
+    .then((movies) => res.status(HTTP_STATUS_OK).send({ data: movies }))
     .catch(next);
 };
 
@@ -30,7 +30,7 @@ const deleteMovie = (req, res, next) => {
     .orFail(new NotFoundError(`Movie with id=${req.params.movieId} not found`))
     .then((movie) => {
       if (movie.owner.toString() !== req.user._id) return next(new ForbiddenError());
-      return Movie.deleteOne(movie).then(() => res.send({ data: movie }));
+      return Movie.deleteOne(movie).then(() => res.status(HTTP_STATUS_OK).send({ data: movie }));
     })
     .catch(next);
 };

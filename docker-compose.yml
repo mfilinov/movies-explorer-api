@@ -34,7 +34,8 @@ services:
     environment:
       - MONGO_DB=mongodb://mongodb:27017/bitfilmsdb
       - NODE_ENV=production
-      - APP_PORT:3000
-      - JWT_SECRET='secret_prod'
+      - APP_PORT=3000
+      - JWT_SECRET=secret_prod
+      - TZ=Europe/Moscow
 volumes:
   db:
